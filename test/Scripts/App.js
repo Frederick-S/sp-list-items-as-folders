@@ -82,7 +82,7 @@
 	var folderCreationInformation = __webpack_require__(3);
 
 	function makeFolders(options, done, error) {
-	    var contextWrapper = contextHelper(options.webUrl, options.useAppContext);
+	    var contextWrapper = contextHelper(options.webUrl, options.useAppContextSite);
 	    var list = contextWrapper.web.get_lists().getByTitle(options.listTitle);
 	    var folderNames = options.folderPath.split('/');
 	    var parentFolderUrl = '';
