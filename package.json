@@ -1,0 +1,26 @@
+{
+  "name": "sp-list-items-as-folders",
+  "version": "0.0.1",
+  "description": "Create SharePoint list items as folders recursively.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Frederick-S/sp-list-items-as-folders.git"
+  },
+  "keywords": [
+    "SharePoint"
+  ],
+  "author": "Frederick-S",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Frederick-S/sp-list-items-as-folders/issues"
+  },
+  "homepage": "https://github.com/Frederick-S/sp-list-items-as-folders#readme",
+  "dependencies": {
+    "sp-context-helper": "0.0.2",
+    "sp-folder-creation-information": "0.0.1"
+  }
+}

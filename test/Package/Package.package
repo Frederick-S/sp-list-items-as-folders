@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package dslVersion="1.0.0.0" 
+        Id="59eb55ca-9ab2-42f7-aac6-08c0adc50ed9" 
+        solutionId="59eb55ca-9ab2-42f7-aac6-08c0adc50ed9" 
+        xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel" 
+        name="SharePoint_App_SPListItemsAsFolders_Test"
+        sharePointProductVersion="16.0">
+  <features>
+        <featureReference itemId="69c5c4e3-35b1-44cb-bd0c-d4eed3e6dbfc" />
+  </features>
+</package>
