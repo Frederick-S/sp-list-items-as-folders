@@ -119,6 +119,8 @@
 	    clientContext.load(listItem);
 	    clientContext.executeQueryAsync(function () {
 	        if (folderNames.length > 0) {
+	            // For some reasons, we have to re-init those objects, otherwise it will throw exception
+	            // when it tries to create the second folder
 	            if (options.useAppContextSite) {
 	                contextWrapper = contextHelper(options.webUrl, options.useAppContextSite);
 	                clientContext = contextWrapper.clientContext;
