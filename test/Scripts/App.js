@@ -65,7 +65,7 @@
 	    'webUrl': appWebUrl,
 	    'listTitle': 'TestList',
 	    'folderPath': 'Folder 1/Folder 2'
-	}
+	};
 
 	makeFolders(options, function () {
 	    $('#message').html('Folders are createdly successfully. <a href=\'' + appWebUrl + '/Lists/TestList/Folder 1\'>Folder 1</a>, <a href=\'' + appWebUrl + '/Lists/TestList/Folder 1/Folder 2\'>Folder 1/Folder 2</a>');
@@ -83,11 +83,22 @@
 
 	function makeFolders(options, done, error) {
 	    var contextWrapper = contextHelper(options.webUrl, options.useAppContextSite);
-	    var list = contextWrapper.web.get_lists().getByTitle(options.listTitle);
+	    var clientContext = contextWrapper.clientContext;
+	    var web = contextWrapper.web;
+	    var list = web.get_lists().getByTitle(options.listTitle);
 	    var folderNames = options.folderPath.split('/');
 	    var parentFolderUrl = '';
 
-	    makeFoldersRecursively(contextWrapper.clientContext, options.webUrl, list, options.listTitle, folderNames, parentFolderUrl, options.fieldValues, done, error);
+	    if (contextWrapper.webUrl) {
+	        makeFoldersRecursively(clientContext, options.webUrl, list, options.listTitle, folderNames, parentFolderUrl, options.fieldValues, done, error);
+	    } else {
+	        clientContext.load(web);
+	        clientContext.executeQueryAsync(function () {
+	            options.webUrl = web.get_url();
+
+	            makeFoldersRecursively(clientContext, options.webUrl, list, options.listTitle, folderNames, parentFolderUrl, options.fieldValues, done, error);
+	        }, error);
+	    }
 	}
 
 	function makeFoldersRecursively(clientContext, webUrl, list, listTitle, folderNames, parentFolderUrl, fieldValues, done, error) {
@@ -134,7 +145,11 @@
 	    var clientContext = null;
 	    var appContextSite = null;
 
-	    if (crossSite) {
+	    if (!webUrl) {
+	        clientContext = SP.ClientContext.get_current();
+	        web = clientContext.get_web();
+	        site = clientContext.get_site();
+	    } else if (crossSite) {
 	        clientContext = SP.ClientContext.get_current();
 	        appContextSite = new SP.AppContextSite(clientContext, webUrl);
 	        web = appContextSite.get_web();
@@ -154,6 +169,7 @@
 	}
 
 	module.exports = contextHelper;
+
 
 /***/ },
 /* 3 */

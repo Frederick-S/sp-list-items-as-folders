@@ -19,7 +19,7 @@ var options = {
     'webUrl': appWebUrl,
     'listTitle': 'TestList',
     'folderPath': 'Folder 1/Folder 2'
-}
+};
 
 makeFolders(options, function () {
     $('#message').html('Folders are createdly successfully. <a href=\'' + appWebUrl + '/Lists/TestList/Folder 1\'>Folder 1</a>, <a href=\'' + appWebUrl + '/Lists/TestList/Folder 1/Folder 2\'>Folder 1/Folder 2</a>');
